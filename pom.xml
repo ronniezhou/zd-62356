@@ -12,7 +12,6 @@
 
   <modules>
     <module>app-groovy</module>
-    <module>app-it</module>
   </modules>
 
   <properties>
