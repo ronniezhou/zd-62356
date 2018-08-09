@@ -5,7 +5,7 @@
 
 	<parent>
 		<groupId>org.sonarqube</groupId>
-		<artifactId>parent</artifactId>
+		<artifactId>Myparent</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
