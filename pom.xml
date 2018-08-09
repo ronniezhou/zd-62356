@@ -11,7 +11,6 @@
   <name>Example of SonarQube Scanner for Maven + Code Coverage by UT and IT</name>
 
   <modules>
-    <module>app-java</module>
     <module>app-groovy</module>
     <module>app-it</module>
   </modules>
