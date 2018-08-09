@@ -9,7 +9,7 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>app-groovy</artifactId>
+	<artifactId>app-groovy1</artifactId>
 
 	<name>Groovy :: JaCoco Multi Modules :: App</name>
 
