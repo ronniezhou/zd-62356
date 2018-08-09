@@ -9,7 +9,7 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>app-java1</artifactId>
+	<artifactId>app-java</artifactId>
 
 	<name>Java :: JaCoco Multi Modules :: App</name>
 
