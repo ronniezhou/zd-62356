@@ -1,6 +1,15 @@
-node {
-  stage('SCM') {
-    git 'git@github.com:ronniezhou/zd-62356.git'
-    echo "hello"
-  }
+pipeline {
+    agent none 
+    stages {
+        stage('Example Build') {
+            steps {
+                echo 'Hello, Maven'
+            }
+        }
+        stage('Example Test') {
+            steps {
+                echo 'Hello, JDK'
+            }
+        }
+    }
 }
