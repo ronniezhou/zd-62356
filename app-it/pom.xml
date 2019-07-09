@@ -8,7 +8,6 @@
 		<artifactId>Myparent</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
-	
 	<artifactId>app-it1</artifactId>
 	
 
