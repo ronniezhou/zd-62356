@@ -14,5 +14,3 @@ Usage
 
 abcdefghijklmnopqsa
 bda
-
-aba
