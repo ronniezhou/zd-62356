@@ -13,4 +13,3 @@ Usage
         mvn clean install sonar:sonar
 
 abcdefghijklmnopqsa
-b
