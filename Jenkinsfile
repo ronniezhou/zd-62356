@@ -6,9 +6,7 @@ pipeline {
     stage('Main') {
       parallel {
         stage('Windows') {
-          agent {
-            label 'win'
-          }
+          agent any
           stages {
             stage('Windows build') {
               steps {
@@ -29,9 +27,7 @@ pipeline {
         } // end stage windows
 
         stage('Linux') {
-          agent {
-            label 'linux'
-          }
+          agent any
           stages {
             stage('Linux build') {
               steps {
@@ -52,9 +48,7 @@ pipeline {
         } // end stage linux
 
         stage('Mac') {
-          agent {
-            label 'mac'
-          }
+          agent any
           stages {
             stage('Mac build') {
               steps {
