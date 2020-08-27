@@ -10,6 +10,7 @@ pipeline {
           stages {
             stage('Windows build') {
               steps {
+                println currentBuild.getBuildCauses()
                 echo 'Windows building...'
               }
             }
