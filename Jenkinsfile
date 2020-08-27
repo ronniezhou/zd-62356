@@ -4,7 +4,7 @@ pipeline {
         stage('Example Build') {
             steps {
                 println currentBuild.getBuildCauses()
-                echo 'Hello, Maven1'
+                echo 'Hello, Maven'
             }
         }
         stage('Example Test') {
