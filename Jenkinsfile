@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('Example Build') {
             steps {
+                println currentBuild.getBuildCauses()
                 echo 'Hello, Maven'
             }
         }
