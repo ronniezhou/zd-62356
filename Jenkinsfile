@@ -1,20 +1,5 @@
 #!groovy
 
-def gradleWithRemoteCache(String tasks, String extraArgs='') {
-  withCredentials([
-    usernamePassword(credentialsId: 'docker-deploy',
-    usernameVariable: 'user',
-    passwordVariable: 'password')
-  ]) {
-    sh """./source/gradlew $tasks -i \
-      -Pgradle.cache.push=true \
-      -PartifactoryUser=$user \
-      -PartifactoryPassword=$password \
-      $extraArgs
-    """
-  }
-}
-
 pipeline {
 
     agent any
@@ -56,12 +41,6 @@ pipeline {
 
     stages {
         stage('Release Configuration') {
-            when {
-                anyOf { branch 'master' ; branch 'release/*' }
-                not { changeRequest() }
-                not { expression { return params.QA_PROMOTION } }
-                not { expression { return params.EMERGENCY } }
-            }
             steps {
                 script {
                     // for master and release branches, enable SCA by dropping the -x args
@@ -82,17 +61,7 @@ pipeline {
                 not { expression { return params.QA_PROMOTION } }
             }
             steps {
-                // VERSION and THE_RELEASE are required here since some components use the gradle application
-                // plugin which creates a tarball whose name includes these tags. The tarballs (here) and the
-                // corresponding rpms (below) must have matching tags.
-                /*gradleWithRemoteCache """-p source clean build tools:batchutil:archtest platform:ctld-batch:unusedobjectcleanup:integrationTest \
-                    platform:ctld-batch:unusedobjectcleanup:jacocoTestCoverageVerification \
-                    -Pversion=${VERSION} -Prelease=${THE_RELEASE} -PshowViolations=false --refresh-dependencies --parallel \
-                    ${DASH_X_ARGS} ${ADDITIONAL_ARGS}""" */
-                gradleWithRemoteCache """-p source clean build \
-                    -Pversion=${VERSION} -Prelease=${THE_RELEASE} -PshowViolations=false --refresh-dependencies --parallel \
-                    ${DASH_X_ARGS} ${ADDITIONAL_ARGS}"""
-                }
+                  echo "hello"
             }
         stage('Collect Static Code Analysis Results') {
             when {
@@ -130,12 +99,7 @@ pipeline {
                 }
             }
             steps {
-                // compute deltas from INITIAL_COMMIT and build only those rpms. then publish them to artifactory
-                gradleWithRemoteCache """-p source buildChangedRpms publishChangedRpms \
-                    -PpreviousCommit=${INITIAL_COMMIT} \
-                    -Pversion=${VERSION} -Prelease=${THE_RELEASE} \
-                    -PpublishUser=$ARTIFACTORY_CREDS_USR -PpublishPassword=$ARTIFACTORY_CREDS_PSW"""
-                archiveArtifacts artifacts: '**/build/distributions/*.rpm', allowEmptyArchive: true
+                echo "hello"
             }
         }
         stage('Build Docker Images') {
@@ -145,15 +109,7 @@ pipeline {
                 not { expression { return params.QA_PROMOTION } }
             }
             steps {
-                withDockerRegistry([url: "https://docker.vrsn.com", credentialsId: "docker-deploy"]) {
-                    // copy docker folder to batches that don't have one, then build those images
-                    sh "./populate-batch-docker-dirs.sh -b ${INITIAL_COMMIT}"
-                    sh "./process-docker-images.sh -b ${INITIAL_COMMIT} -- -v ${VERSION} -r ${THE_RELEASE} -p"
-                    gradleWithRemoteCache """-p source buildChangedDockerImages -PpushDockerImage=true \
-                        -PpreviousCommit=${INITIAL_COMMIT} \
-                        -Pversion=${VERSION} -Prelease=${THE_RELEASE}"""
-                    archiveArtifacts artifacts: '**/build/*.docker', allowEmptyArchive: true
-                }
+                echo "hello"
             }
         }
         stage('QA Promotion') {
@@ -167,9 +123,7 @@ pipeline {
                 }
             }
             steps {
-                gradleWithRemoteCache """-p source promoteChangedRpms \
-                    -PpreviousCommit=${INITIAL_COMMIT} -Pversion=${VERSION} -Prelease=${THE_RELEASE} \
-                    -PpublishUser=$ARTIFACTORY_CREDS_USR -PpublishPassword=$ARTIFACTORY_CREDS_PSW"""
+                echo "hello"
             }
         }
     }
