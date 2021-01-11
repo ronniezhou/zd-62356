@@ -6,7 +6,7 @@ pipeline {
         stage('Collect Static') {
             steps {
                 echo "hello"
-                sh 'false'
+                sh 'true'
             }
         }
     }
