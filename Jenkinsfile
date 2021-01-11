@@ -17,9 +17,7 @@ def gradleWithRemoteCache(String tasks, String extraArgs='') {
 
 pipeline {
 
-    agent {
-        label 'docker-swarm'
-    }
+    agent any
 
     parameters {
         booleanParam(name: 'QA_PROMOTION', defaultValue: false, description: 'Set this flag for ALL QA-Promotion jobs')
