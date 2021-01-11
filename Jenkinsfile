@@ -5,8 +5,7 @@ pipeline {
     stages {
         stage('Collect Static') {
             steps {
-                echo "hello"
-                sh 'true'
+                jacoco inclusionPattern: '**/com/verisign/**/*'
             }
         }
     }
