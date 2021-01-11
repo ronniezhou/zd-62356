@@ -63,6 +63,7 @@ pipeline {
             steps {
                   echo "hello"
             }
+        }
         stage('Collect Static Code Analysis Results') {
             when {
                 anyOf { branch 'master' ; branch 'release/*' }
