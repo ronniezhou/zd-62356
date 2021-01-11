@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Collect Static') {
             steps {
-                jacoco(inclusionPattern: '**/com/verisign/**/*')
+                jacoco inclusionPattern: '**/com/verisign/**/*'
             }
         }
     }
