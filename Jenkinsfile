@@ -10,7 +10,7 @@ pipeline {
         stage('Example Test') {
             steps {
                 echo 'Hello, JDK'
-                touch readme.txt
+                sh "touch readme.txt"
             }
         }
     }
