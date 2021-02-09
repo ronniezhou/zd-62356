@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Release Configuration') {
             steps {
-                echo "hello2"
+                echo "hello_Mitch"
             }
         }
     }
